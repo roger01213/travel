@@ -42,6 +42,11 @@ const regionSearch = document.querySelector('.regionSearch');
 const ticketRegion = document.querySelector('#ticketRegion');
 const btn = document.querySelector('.btn');
 const searchResultText = document.querySelector('#searchResult-text');
+
+
+
+
+
 btn.addEventListener('click', adddata)
 
 
@@ -110,13 +115,13 @@ function adddata() {
   data.push(obj);
   init();
   cleardata();
+  regionSearch.value="";
 }
 
 
 
 
 regionSearch.addEventListener('change', function (e) {
-
   let str = " ";
   let count = 0;
   data.forEach(function (item, index) {
@@ -187,7 +192,8 @@ regionSearch.addEventListener('change', function (e) {
   })
   ticketCardArea.innerHTML = str;
   searchResultText.innerHTML = `本次搜尋共 ${count} 筆資料`;
-});
+}
+);
 
 
 init();
