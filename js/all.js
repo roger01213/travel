@@ -33,22 +33,22 @@ let data = [
 
 // 選取 querySelector
 const ticketCardArea = document.querySelector('.ticketCard-area');
-const ticketName= document.querySelector('#ticketName');
-const ticketPrice= document.querySelector('#ticketPrice');
-const ticketNum=document.querySelector('#ticketNum');
-const ticketRate= document.querySelector('#ticketRate');
-const ticketDescription= document.querySelector('#ticketDescription');
-const regionSearch=document.querySelector('.regionSearch');
-const ticketRegion= document.querySelector('#ticketRegion');
-const btn=document.querySelector('.btn');
-const searchResultText= document.querySelector('#searchResult-text');
-btn.addEventListener('click',adddata)
+const ticketName = document.querySelector('#ticketName');
+const ticketPrice = document.querySelector('#ticketPrice');
+const ticketNum = document.querySelector('#ticketNum');
+const ticketRate = document.querySelector('#ticketRate');
+const ticketDescription = document.querySelector('#ticketDescription');
+const regionSearch = document.querySelector('.regionSearch');
+const ticketRegion = document.querySelector('#ticketRegion');
+const btn = document.querySelector('.btn');
+const searchResultText = document.querySelector('#searchResult-text');
+btn.addEventListener('click', adddata)
 
 
 
-function init(){
+function init() {
   let str = "";
-  let count=0;
+  let count = 0;
   data.forEach(function (item, index) {
     str += `<li class="ticketCard">
     <div class="ticketCard-img">
@@ -78,36 +78,49 @@ function init(){
       </div>
     </div>
   </li>`
-  count=count+1;
+    count = count + 1;
   })
-  ticketCardArea.innerHTML=str;
+  ticketCardArea.innerHTML = str;
   // console.log(count);
-  searchResultText.innerHTML=`本次搜尋共 ${count} 筆資料`;
+  searchResultText.innerHTML = `本次搜尋共 ${count} 筆資料`;
 }
 
-function adddata(){
-  let obj={}
-  obj.name=ticketName.value;
-  obj.imgUrl=data[0].imgUrl;
-  obj.area=ticketRegion.value;
-  obj.description=ticketDescription.value;
-  obj.group=ticketNum.value;
-  obj.price=ticketPrice.value;
-  obj.rate=ticketRate.value;
+
+
+function cleardata() {
+  ticketName.value = "";
+  ticketRegion.value = "";
+  ticketDescription.value = "";
+  ticketNum.value = "";
+  ticketPrice.value = "";
+  ticketRate.value = "";
+}
+
+
+function adddata() {
+  let obj = {}
+  obj.name = ticketName.value;
+  obj.imgUrl = data[0].imgUrl;
+  obj.area = ticketRegion.value;
+  obj.description = ticketDescription.value;
+  obj.group = ticketNum.value;
+  obj.price = ticketPrice.value;
+  obj.rate = ticketRate.value;
   // console.log(obj);
   data.push(obj);
   init();
+  cleardata();
 }
 
 
 
 
-regionSearch.addEventListener('change',function(e){
-  
-  let str=" ";
-  let count=0;
-  data.forEach(function (item, index){
-  
+regionSearch.addEventListener('change', function (e) {
+
+  let str = " ";
+  let count = 0;
+  data.forEach(function (item, index) {
+
     if (e.target.value == "") {
       str += `<li class="ticketCard">
       <div class="ticketCard-img">
@@ -137,11 +150,11 @@ regionSearch.addEventListener('change',function(e){
         </div>
       </div>
     </li>`
-    count+=1;
-   }
-   else if(e.target.value == item.area){
-   
-    str += `<li class="ticketCard">
+      count += 1;
+    }
+    else if (e.target.value == item.area) {
+
+      str += `<li class="ticketCard">
     <div class="ticketCard-img">
       <a href="#">
         <img src="${item.imgUrl}" alt="">
@@ -169,12 +182,12 @@ regionSearch.addEventListener('change',function(e){
       </div>
     </div>
   </li>`
-  count+=1;
-   }
+      count += 1;
+    }
   })
-   ticketCardArea.innerHTML=str;
-   searchResultText.innerHTML=`本次搜尋共 ${count} 筆資料`;
-  });
+  ticketCardArea.innerHTML = str;
+  searchResultText.innerHTML = `本次搜尋共 ${count} 筆資料`;
+});
 
 
 init();
